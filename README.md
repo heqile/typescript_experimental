@@ -1,7 +1,7 @@
 # Description
 In this poc project, I will experiment TypeScript language as well as the software architecture in TypeScript.
 
-## Probleme
+## Problem
 We need to construct a library management system in order to helper staff with their work.
 
 A reader have to be registered before borrow books.
@@ -14,4 +14,43 @@ When a reader come to return a book, the stuff need to check wether the return d
 ### Entities
 - User
 - Book
-- BookCopy
+- BorrowRecord
+
+
+### Relationships
+```mermaid
+---
+title: library example
+---
+erDiagram
+    User ||--o{ BorrowRecord : has
+    BorrowRecord }o--|| Book: corresponds
+
+```
+
+### Models
+```typescript
+interface User {
+    id: number;
+    name: string;
+}
+
+interface Book {
+    id: number;
+    title: string;
+    author: string;
+    description?: string;
+}
+
+interface BorrowRecord {
+    userId: number;
+    bookId: number;
+    startDate: Date;
+    returnDate: Date;
+}
+```
+
+## API
+- Book
+- User
+- BorrowRecord
